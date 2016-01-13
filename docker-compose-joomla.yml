@@ -1,0 +1,14 @@
+mysql:
+  extends:
+    file: mysql.yml
+    service: mysql
+
+joomla:
+  container_name: joomla
+  image: joomla
+  environment:
+    JOOMLA_DB_HOST: mysql:3306
+    JOOMLA_DB_USER: root
+    JOOMLA_DB_PASSWORD: ${db_pass}
+  ports:
+    - "80:80"
