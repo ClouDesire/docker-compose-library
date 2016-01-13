@@ -1,6 +1,6 @@
 mysql:
   extends:
-    file: mysql.yml
+    file: ../db/mysql.yml
     service: mysql
 
 drupal:
