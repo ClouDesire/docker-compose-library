@@ -1,0 +1,14 @@
+mysql:
+  extends:
+    file: mysql.yml
+    service: mysql
+
+drupal:
+  container_name: drupal
+  image: drupal
+  environment:
+    MYSQL_DATABASE: mysql:3306
+    MYSQL_USER: root
+    MYSQL_PASSWORD: ${db_pass}
+  ports:
+    - "80:80"
