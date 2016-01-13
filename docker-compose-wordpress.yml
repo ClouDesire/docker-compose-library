@@ -1,0 +1,14 @@
+mysql:
+  extends:
+    file: mysql.yml
+    service: mysql
+
+wordpress:
+  container_name: wordpress
+  image: wordpress
+  environment:
+    WORDPRESS_DB_HOST: mysql:3306
+    WORDPRESS_DB_USER: root
+    WORDPRESS_DB_PASSWORD: ${db_pass}
+  ports:
+    - "80:80"
