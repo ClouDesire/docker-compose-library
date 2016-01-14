@@ -1,0 +1,17 @@
+postgres:
+  extends:
+    file: ../db/postgres.yml
+    service: postgres
+  environment:
+    POSTGRES_USER: odoo
+
+odoo:
+  container_name: odoo
+  image: odoo
+  environment:
+    DB_PORT_5432_TCP_ADDR: postgres
+    DB_PORT_5432_TCP_PORT: 5432
+    DB_ENV_POSTGRES_USER: odoo
+    DB_ENV_POSTGRES_PASSWORD: ${db_pass}
+  ports:
+    - "8069:8069"
