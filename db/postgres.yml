@@ -1,0 +1,6 @@
+postgres:
+  container_name: postgres
+  image: postgres
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: ${db_pass}
