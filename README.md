@@ -2,4 +2,4 @@
 
 run with:
 
-`db_pass=myPwd docker-compose --x-networking -f docker-compose-***.yml up --force-recreate`
+`[optional_env_vars] docker-compose --x-networking -f ***.yml up --force-recreate`
