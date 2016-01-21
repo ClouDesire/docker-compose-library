@@ -1,0 +1,14 @@
+postgres:
+  extends:
+    file: ../db/postgres.yml
+    service: postgres
+
+redmine:
+  container_name: redmine
+  image: redmine
+  restart: on-failure
+  environment:
+    POSTGRES_PORT_5432_TCP: 5432
+    POSTGRES_ENV_POSTGRES_PASSWORD: ${db_pass}
+  ports:
+    - "3000:3000"
