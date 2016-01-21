@@ -1,0 +1,5 @@
+ghost:
+  container_name: ghost
+  image: ghost
+  ports:
+    - "2368:2368"
