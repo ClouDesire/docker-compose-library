@@ -1,0 +1,10 @@
+mattermost:
+  container_name: mattermost
+  image: mattermost/platform
+  environment:
+    MYSQL_ROOT_PASSWORD: ${db_pass}
+    MYSQL_DATABASE: mattermost_test
+    MYSQL_USER: mmuser
+    MYSQL_PASSWORD: mostest
+  ports:
+    - "80:80"
