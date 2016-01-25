@@ -1,0 +1,22 @@
+postgres:
+  extends:
+    file: ../db/postgres.yml
+    service: postgres
+  environment:
+    POSTGRES_DB: alfresco
+
+alfresco:
+  container_name: alfresco
+  image: rsippl/alfresco
+  volumes:
+    - SOME_DATA_FOLDER:/mnt/content_store
+  environment:
+    CONTENT_STORE: /mnt/content_store
+    DB_HOST: postgres
+    DB_USERNAME: postgres
+    DB_NAME: alfresco
+    DB_PASSWORD: ${db_pass}
+  ports:
+    - "8080:8080"
+
+# default username ans password: admin admin
