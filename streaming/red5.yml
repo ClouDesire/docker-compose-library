@@ -1,0 +1,12 @@
+red5:
+  container_name: red5
+  image: mondain/red5:openjdk7-red5-104R
+  volumes:
+    - red5_data:/opt/red5
+  ports:
+    - "5080:5080"
+    - "843:843"
+    - "1935:1935"
+    - "5443:5443"
+    - "8081:8081"
+    - "8443:8443"
