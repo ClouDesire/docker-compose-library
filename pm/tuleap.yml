@@ -1,0 +1,9 @@
+tuleap:
+  container_name: tuleap
+  image: enalean/tuleap-aio
+  environment:
+    - VIRTUAL_HOST=localhost
+  volumes:
+    - SOME_DATA_FOLDER:/data
+  ports:
+    - "80:80"
