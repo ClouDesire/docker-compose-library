@@ -1,0 +1,8 @@
+plex:
+  container_name: plex
+  image: timhaak/plex
+  volumes:
+    - plex_config:/config
+    - plex_data:/data
+  ports:
+    - "32400:32400"
