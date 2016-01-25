@@ -1,5 +1,7 @@
 owncloud:
   container_name: owncloud
   image: owncloud:8.1
+  volumes:
+    - owncloud_html:/var/www/html
   ports:
     - "80:80"

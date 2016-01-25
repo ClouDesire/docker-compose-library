@@ -1,6 +1,8 @@
 mattermost:
   container_name: mattermost
   image: mattermost/platform
+  volumes:
+    - mattermost_mysql:/var/lib/mysql
   environment:
     MYSQL_ROOT_PASSWORD: ${db_pass}
     MYSQL_DATABASE: mattermost_test

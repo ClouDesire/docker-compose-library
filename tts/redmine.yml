@@ -6,6 +6,8 @@ postgres:
 redmine:
   container_name: redmine
   image: redmine
+  volumes:
+    - redmine_files:/usr/src/redmine/files
   restart: on-failure
   environment:
     POSTGRES_PORT_5432_TCP: 5432

@@ -1,5 +1,7 @@
 ghost:
   container_name: ghost
   image: ghost
+  volumes:
+    - ghost_blog:/var/lib/ghost
   ports:
     - "2368:2368"

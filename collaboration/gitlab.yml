@@ -8,10 +8,15 @@ postgres:
 redis:
   container_name: redis
   image: redis
+  volumes:
+    - redis_data:/data
 
 gitlab:
   container_name: gitlab
   image: sameersbn/gitlab:8.3.4-2
+  volumes:
+    - gitlab_logs:/var/log/gitlab
+    - gitlab_data:/home/git/data
   environment:
     DB_HOST: postgres
     DB_USER: postgres

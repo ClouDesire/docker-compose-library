@@ -2,8 +2,8 @@ icecast:
   container_name: icecast
   image: moul/icecast
   volumes:
-    - logs:/var/log/icecast2
-    - localtime:/etc/localtime
+    - icecast_logs:/var/log/icecast2
+    - icecast_localtime:/etc/localtime
   environment:
     - ICECAST_SOURCE_PASSWORD: ${source_pass}
     - ICECAST_ADMIN_PASSWORD: ${admin_pass}

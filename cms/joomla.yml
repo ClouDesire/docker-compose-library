@@ -6,6 +6,8 @@ mysql:
 joomla:
   container_name: joomla
   image: joomla
+  volumes:
+    - joomla_html:/var/www/html
   environment:
     JOOMLA_DB_HOST: mysql:3306
     JOOMLA_DB_USER: root

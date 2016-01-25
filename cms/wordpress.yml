@@ -6,6 +6,8 @@ mysql:
 wordpress:
   container_name: wordpress
   image: wordpress
+  volumes:
+    - wordpress_html:/var/www/html
   environment:
     WORDPRESS_DB_HOST: mysql:3306
     WORDPRESS_DB_USER: root

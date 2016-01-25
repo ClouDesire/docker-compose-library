@@ -8,6 +8,9 @@ postgres:
 odoo:
   container_name: odoo
   image: odoo
+  volumes:
+    - odoo_data:/var/lib/odoo
+    - odoo_addons:/mnt/extra-addons
   environment:
     DB_PORT_5432_TCP_ADDR: postgres
     DB_PORT_5432_TCP_PORT: 5432
