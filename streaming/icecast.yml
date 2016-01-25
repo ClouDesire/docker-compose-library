@@ -1,0 +1,13 @@
+icecast:
+  container_name: icecast
+  image: moul/icecast
+  volumes:
+    - logs:/var/log/icecast2
+    - localtime:/etc/localtime
+  environment:
+    - ICECAST_SOURCE_PASSWORD: ${source_pass}
+    - ICECAST_ADMIN_PASSWORD: ${admin_pass}
+    - ICECAST_PASSWORD: ${icecast_pass}
+    - ICECAST_RELAY_PASSWORD: ${icecast_relay_pass}
+  ports:
+    - 8000:8000
