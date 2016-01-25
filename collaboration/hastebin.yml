@@ -1,0 +1,5 @@
+hastebin:
+  container_name: hastebin
+  image: jmvrbanac/hastebin
+  ports:
+    - "7777:7777"
