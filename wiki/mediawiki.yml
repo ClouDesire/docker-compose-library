@@ -1,0 +1,16 @@
+mysql:
+  extends:
+    file: ../db/mysql.yml
+    service: mysql
+
+mediawiki:
+  container_name: mediawiki
+  image: synctree/mediawiki
+  environment:
+    MYSQL_PORT_3306_TCP: 3306
+    MEDIAWIKI_DB_HOST: mysql
+    MEDIAWIKI_DB_PASSWORD: ${db_pass}
+    MEDIAWIKI_DB_USER: root
+    MEDIAWIKI_DB_NAME: mediawiki
+  ports:
+    - 80:80
