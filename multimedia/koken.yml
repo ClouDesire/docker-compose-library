@@ -1,0 +1,5 @@
+koken:
+  container_name: koken
+  image: koken/koken-lemp
+  ports:
+    - 8080:8080
