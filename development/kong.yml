@@ -1,0 +1,14 @@
+cassandra:
+  container_name: cassandra
+  image: cassandra:2.2.4
+
+kong:
+  container_name: kong
+  image: articulate/kong-monit
+  ports:
+    - 9999:9999
+    - 8000:8000
+    - 8001:8001
+    - 8443:8443
+    - 7946:7946
+    - 7946:7946/udp
