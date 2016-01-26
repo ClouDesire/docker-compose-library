@@ -1,0 +1,5 @@
+trac:
+  image: jmmills/trac
+  container_name: trac
+  ports:
+    - 80:80
