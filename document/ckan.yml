@@ -18,5 +18,4 @@ ckan:
     DATABASE_URL: postgresql://ckan:ckan@postgres/ckan
     SOLR_URL: http://solr:8983/solr/ckan
   ports:
-    - "8080:8080"
-    - "3000:80"
+    - "80:80"
