@@ -1,0 +1,22 @@
+mysql:
+  extends:
+    file: ../db/mysql.yml
+    service: mysql
+  environment:
+    MYSQL_DATABASE: openfire
+    MYSQL_USER: openfire
+    MYSQL_PASSWORD: ${usr_pass}
+
+openfire:
+  container_name: openfire
+  image: fanatic/openfire
+  volumes:
+    - openfire_data:/data/openfire
+  restart: always
+  environment:
+    DB_1_PORT_3306_TCP_ADDR: mysql
+    DB_1_PORT_3306_TCP_PORT: 3306
+    JDBC_USERNAME: openfire
+    JDBC_PASSWORD: ${usr_pass}
+  ports:
+    - "9090:9090"
