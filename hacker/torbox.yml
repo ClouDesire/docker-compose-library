@@ -1,0 +1,5 @@
+torbox:
+  container_name: torbox
+  image: hsaito/torbox
+  ports:
+    - "9050:9050"
