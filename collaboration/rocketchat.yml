@@ -1,5 +1,5 @@
-db:
-  container_name: db
+mongo:
+  container_name: mongo
   image: mongo
   command: mongod --smallfiles --oplogSize 128
   volumes:
@@ -8,7 +8,7 @@ db:
 
 rocketchat:
   container_name: rocketchat
-  image: rocket.chat
+  image: rocketchat/rocket.chat:0.14.0
   environment:
     ROOT_URL: http://localhost:3000
   ports:
