@@ -1,0 +1,12 @@
+xibo:
+  container_name: xibo
+  image: chimeradev/xibo-docker
+  volumes:
+    - xibo_data:/xibo-data
+  environment:
+    MYSQL_HOST: 127.0.0.1
+    MYSQL_PASS: ${db_pass}
+    XIBO_ADMIN_PASS: ${admin_pass}
+    MYSQL_DBNAME: xibo
+  ports:
+    - "80:80"
