@@ -1,0 +1,7 @@
+paperwork:
+  container_name: paperwork
+  image: zuhkov/paperwork
+  volumes:
+    - paperwork_config:/config
+  ports:
+    - "80:80"
