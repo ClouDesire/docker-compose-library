@@ -4,7 +4,8 @@ cassandra:
 
 kong:
   container_name: kong
-  image: mashape/kong
+  image: mashape/kong:0.5.4
+  restart: always
   ports:
     - 9999:9999
     - 8000:8000
