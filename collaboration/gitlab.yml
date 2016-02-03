@@ -24,8 +24,8 @@ gitlab:
     DB_NAME: gitlabhq_production
     REDIS_HOST: redis
     GITLAB_PORT: 80
-    GITLAB_SSH_PORT: 22
+    GITLAB_SSH_PORT: 2222
     GITLAB_SECRETS_DB_KEY_BASE: ${db_key_base}
   ports:
     - "80:80"
-    - "22:22"
+    - "2222:2222"
