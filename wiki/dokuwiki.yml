@@ -1,0 +1,8 @@
+dokuwiki:
+  container_name: dokuwiki
+  image: istepanov/dokuwiki
+  volumes:
+    - dokuwiki_storage:/var/dokuwiki-storage
+    - dokuwiki_plugins:/var/www/lib/plugins
+  ports:
+    - 80:80
