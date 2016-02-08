@@ -1,5 +1,5 @@
 eXo:
   container_name: eXo
-  image: exoplatform/ubuntu-jdk7-exo
+  image: exoplatform/exo-community
   ports:
     - "8080:8080"
