@@ -3,12 +3,13 @@ mongo:
   image: mongo
   command: mongod --smallfiles --oplogSize 128
   volumes:
-    - ./data/runtime/db:/data/db
-    - ./data/dump:/dump
+    - mongo_data:/data/db
+    - mongo_dump:/dump
 
 rocketchat:
   container_name: rocketchat
   image: rocketchat/rocket.chat:0.14.0
+  restart: always
   environment:
     ROOT_URL: http://localhost:3000
   ports:
