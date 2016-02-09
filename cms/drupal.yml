@@ -5,10 +5,10 @@ mysql:
 
 drupal:
   container_name: drupal
-  image: drupal
+  image: samos123/drupal
   environment:
-    MYSQL_DATABASE: mysql:3306
-    MYSQL_USER: root
-    MYSQL_PASSWORD: ${db_pass}
+    DB_HOST: mysql
+    DB_PASS: ${db_pass}
+    ADMIN_PASSWORD: ${admin_pass}
   ports:
     - "80:80"
