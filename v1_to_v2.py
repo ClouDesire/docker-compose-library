@@ -35,7 +35,7 @@ def modify_volumes(volume_list):
 
 @click.command()
 @click.option('--source', help='Composer source file', prompt=True)
-@click.option('--destination', help='Composer destination path [to implement]')
+@click.option('--destination', help='Composer destination path')
 def from_v1_to_v2(source, destination):
     logging.debug('source: {}; destination: {}'.format(source, destination))
 
