@@ -1,41 +1,37 @@
-postgres:
-  extends:
-    file: ../db/postgres.yml
-    service: postgres
-  environment:
-    POSTGRES_DB: nuxeo
-    POSTGRES_USER: nuxeo
-    POSTGRES_PASSWORD: ${db_pass}
-
-redis:
-  container_name: redis
-  image: redis
-  volumes:
-    - redis_data:/data
-
-elasticsearch:
-  container_name: elasticsearch
-  image: elasticsearch:1
-  volumes:
-    - ES_DATA:/usr/share/elasticsearch/data
-
-nuxeo:
-  container_name: nuxeo
-  image: nuxeo
-  restart: always
-  volumes:
-    - NUXEO_DATA:/var/lib/nuxeo/data
-  environment:
-    NUXEO_URL: http://localhost:8080
-    NUXEO_REDIS_HOST: redis
-    NUXEO_ES_HOSTS: elasticsearch
-    NUXEO_DB_PASSWORD: ${db_pass}
-    NUXEO_DB_USER: nuxeo
-    NUXEO_DB_NAME: nuxeo
-    NUXEO_DB_HOST: postgres
-    NUXEO_DB_TYPE: postgresql
-#    NUXEO_PACKAGES: "nuxeo-web-mobile nuxeo-drive nuxeo-diff nuxeo-spreadsheet nuxeo-dam nuxeo-template-rendering nuxeo-template-rendering-samples nuxeo-showcase-content"
-  ports:
-    - "8080:8080"
-
-#Administrator:Adminitrator
+version: '2'
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:1
+    volumes:
+    - ./ES_DATA:/usr/share/elasticsearch/data
+  nuxeo:
+    container_name: nuxeo
+    environment:
+      NUXEO_DB_HOST: postgres
+      NUXEO_DB_NAME: nuxeo
+      NUXEO_DB_PASSWORD: ${db_pass}
+      NUXEO_DB_TYPE: postgresql
+      NUXEO_DB_USER: nuxeo
+      NUXEO_ES_HOSTS: elasticsearch
+      NUXEO_REDIS_HOST: redis
+      NUXEO_URL: http://localhost:8080
+    image: nuxeo
+    ports:
+    - 8080:8080
+    restart: always
+    volumes:
+    - ./NUXEO_DATA:/var/lib/nuxeo/data
+  postgres:
+    environment:
+      POSTGRES_DB: nuxeo
+      POSTGRES_PASSWORD: ${db_pass}
+      POSTGRES_USER: nuxeo
+    extends:
+      file: ../db/postgres.yml
+      service: postgres
+  redis:
+    container_name: redis
+    image: redis
+    volumes:
+    - ./redis_data:/data

@@ -1,17 +1,18 @@
-mongo:
-  container_name: mongo
-  image: mongo
-  volumes:
-    - mongo_data:/data/db
-
-lets-chat:
-  container_name: lets-chat
-  image: sdelements/lets-chat
-  volumes:
-    - letschat_config:/usr/src/app/config
-  environment:
-    MONGO_PORT_27017_TCP_ADDR: mongo
-    MONGO_PORT_27017_TCP_PORT: 27012
-  ports:
+version: '2'
+services:
+  lets-chat:
+    container_name: lets-chat
+    environment:
+      MONGO_PORT_27017_TCP_ADDR: mongo
+      MONGO_PORT_27017_TCP_PORT: 27012
+    image: sdelements/lets-chat
+    ports:
     - 8080:8080
     - 5222:5222
+    volumes:
+    - ./letschat_config:/usr/src/app/config
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+    - ./mongo_data:/data/db

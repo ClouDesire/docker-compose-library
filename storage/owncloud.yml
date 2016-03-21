@@ -1,7 +1,9 @@
-owncloud:
-  container_name: owncloud
-  image: owncloud:8.1
-  volumes:
-    - owncloud_html:/var/www/html
-  ports:
-    - "80:80"
+version: '2'
+services:
+  owncloud:
+    container_name: owncloud
+    image: owncloud:8.1
+    ports:
+    - 80:80
+    volumes:
+    - ./owncloud_html:/var/www/html

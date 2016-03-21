@@ -1,17 +1,18 @@
-postgres:
-  extends:
-    file: ../db/postgres.yml
-    service: postgres
-  environment:
-    POSTGRES_DB: sonar
-
-sonarqube:
-  image: sonarqube
-  container_name: sonarqube
-  environment:
-    SONARQUBE_JDBC_USERNAME: postgres
-    SONARQUBE_JDBC_PASSWORD: ${db_pass}
-    SONARQUBE_JDBC_URL: jdbc:postgresql://postgres/sonar
-  ports:
+version: '2'
+services:
+  postgres:
+    environment:
+      POSTGRES_DB: sonar
+    extends:
+      file: ../db/postgres.yml
+      service: postgres
+  sonarqube:
+    container_name: sonarqube
+    environment:
+      SONARQUBE_JDBC_PASSWORD: ${db_pass}
+      SONARQUBE_JDBC_URL: jdbc:postgresql://postgres/sonar
+      SONARQUBE_JDBC_USERNAME: postgres
+    image: sonarqube
+    ports:
     - 9000:9000
     - 9092:9092

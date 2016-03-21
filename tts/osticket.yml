@@ -1,21 +1,22 @@
-mysql:
-  extends:
-    file: ../db/mysql.yml
-    service: mysql
-  environment:
-    MYSQL_DATABASE: osticket
-    MYSQL_USER: osticket
-    MYSQL_PASSWORD: ${usr_pass}
-
-osticket:
-  container_name: osticket
-  image: campbellsoftwaresolutions/osticket
-  volumes:
-    - osticket_data:/data/upload/include/plugins
-    - osticket_logs:/var/log/nginx
-  environment:
-    MYSQL_HOST: mysql
-    MYSQL_PASSWORD: ${usr_pass}
-    INSTALL_SECRET: ${secret}
-  ports:
-    - "80:80"
+version: '2'
+services:
+  mysql:
+    environment:
+      MYSQL_DATABASE: osticket
+      MYSQL_PASSWORD: ${usr_pass}
+      MYSQL_USER: osticket
+    extends:
+      file: ../db/mysql.yml
+      service: mysql
+  osticket:
+    container_name: osticket
+    environment:
+      INSTALL_SECRET: ${secret}
+      MYSQL_HOST: mysql
+      MYSQL_PASSWORD: ${usr_pass}
+    image: campbellsoftwaresolutions/osticket
+    ports:
+    - 80:80
+    volumes:
+    - ./osticket_data:/data/upload/include/plugins
+    - ./osticket_logs:/var/log/nginx

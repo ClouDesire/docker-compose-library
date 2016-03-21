@@ -1,31 +1,31 @@
-postgres:
-  extends:
-    file: ../db/postgres.yml
-    service: postgres
-  environment:
-    POSTGRES_DB: gitlabhq_production
-
-redis:
-  container_name: redis
-  image: redis
-  volumes:
-    - redis_data:/data
-
-gitlab:
-  container_name: gitlab
-  image: sameersbn/gitlab:8.3.4-2
-  volumes:
-    - gitlab_logs:/var/log/gitlab
-    - gitlab_data:/home/git/data
-  environment:
-    DB_HOST: postgres
-    DB_USER: postgres
-    DB_PASS: ${db_pass}
-    DB_NAME: gitlabhq_production
-    REDIS_HOST: redis
-    GITLAB_PORT: 80
-    GITLAB_SSH_PORT: 2222
-    GITLAB_SECRETS_DB_KEY_BASE: ${db_key_base}
-  ports:
-    - "80:80"
-    - "2222:2222"
+version: '2'
+services:
+  gitlab:
+    container_name: gitlab
+    environment:
+      DB_HOST: postgres
+      DB_NAME: gitlabhq_production
+      DB_PASS: ${db_pass}
+      DB_USER: postgres
+      GITLAB_PORT: 80
+      GITLAB_SECRETS_DB_KEY_BASE: ${db_key_base}
+      GITLAB_SSH_PORT: 2222
+      REDIS_HOST: redis
+    image: sameersbn/gitlab:8.3.4-2
+    ports:
+    - 80:80
+    - 2222:2222
+    volumes:
+    - ./gitlab_logs:/var/log/gitlab
+    - ./gitlab_data:/home/git/data
+  postgres:
+    environment:
+      POSTGRES_DB: gitlabhq_production
+    extends:
+      file: ../db/postgres.yml
+      service: postgres
+  redis:
+    container_name: redis
+    image: redis
+    volumes:
+    - ./redis_data:/data

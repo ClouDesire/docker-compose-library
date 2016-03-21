@@ -1,16 +1,17 @@
-mysql:
-  extends:
-    file: ../db/mysql.yml
-    service: mysql
-
-sugarCRM:
-  container_name: sugarCRM
-  image: spantree/sugarcrm
-  environment:
-    DB_HOST_NAME: mysql:3306
-    DB_USER_NAME: root
-    DB_PASSWORD: ${db_pass}
-    DB_TYPE: mysql
-    DB_MANAGER: MysqlManager
-  ports:
-    - "80:80"
+version: '2'
+services:
+  mysql:
+    extends:
+      file: ../db/mysql.yml
+      service: mysql
+  sugarCRM:
+    container_name: sugarCRM
+    environment:
+      DB_HOST_NAME: mysql:3306
+      DB_MANAGER: MysqlManager
+      DB_PASSWORD: ${db_pass}
+      DB_TYPE: mysql
+      DB_USER_NAME: root
+    image: spantree/sugarcrm
+    ports:
+    - 80:80

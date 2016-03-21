@@ -1,20 +1,21 @@
-postgres:
-  extends:
-    file: ../db/postgres.yml
-    service: postgres
-  environment:
-    POSTGRES_USER: odoo
-
-odoo:
-  container_name: odoo
-  image: odoo
-  volumes:
-    - odoo_data:/var/lib/odoo
-    - odoo_addons:/mnt/extra-addons
-  environment:
-    DB_PORT_5432_TCP_ADDR: postgres
-    DB_PORT_5432_TCP_PORT: 5432
-    DB_ENV_POSTGRES_USER: odoo
-    DB_ENV_POSTGRES_PASSWORD: ${db_pass}
-  ports:
-    - "8069:8069"
+version: '2'
+services:
+  odoo:
+    container_name: odoo
+    environment:
+      DB_ENV_POSTGRES_PASSWORD: ${db_pass}
+      DB_ENV_POSTGRES_USER: odoo
+      DB_PORT_5432_TCP_ADDR: postgres
+      DB_PORT_5432_TCP_PORT: 5432
+    image: odoo
+    ports:
+    - 8069:8069
+    volumes:
+    - ./odoo_data:/var/lib/odoo
+    - ./odoo_addons:/mnt/extra-addons
+  postgres:
+    environment:
+      POSTGRES_USER: odoo
+    extends:
+      file: ../db/postgres.yml
+      service: postgres

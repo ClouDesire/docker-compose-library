@@ -1,8 +1,10 @@
-plex:
-  container_name: plex
-  image: timhaak/plex
-  volumes:
-    - plex_config:/config
-    - plex_data:/data
-  ports:
-    - "32400:32400"
+version: '2'
+services:
+  plex:
+    container_name: plex
+    image: timhaak/plex
+    ports:
+    - 32400:32400
+    volumes:
+    - ./plex_config:/config
+    - ./plex_data:/data

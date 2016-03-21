@@ -1,29 +1,29 @@
-mongo:
-  container_name: mongo
-  image: mongo
-  command: mongod --smallfiles --oplogSize 128
-  volumes:
-    - mongo_data:/data/db
-    - mongo_dump:/dump
-
-rocketchat:
-  container_name: rocketchat
-  image: rocketchat/rocket.chat:0.14.0
-  restart: always
-  environment:
-    ROOT_URL: http://localhost:3000
-  ports:
-    - 3000:3000
-
-hubot:
-  image: rocketchat/hubot-rocketchat
-  container_name: hubot-rocketchat
-  environment:
+version: '2'
+services:
+  hubot:
+    container_name: hubot-rocketchat
+    environment:
     - ROCKETCHAT_URL=rocketchat:3000
     - ROCKETCHAT_ROOM=GENERAL
     - ROCKETCHAT_USER=bot
     - ROCKETCHAT_PASSWORD=botpassword
     - BOT_NAME=bot
     - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics
-  ports:
-     - 3001:8080
+    image: rocketchat/hubot-rocketchat
+    ports:
+    - 3001:8080
+  mongo:
+    command: mongod --smallfiles --oplogSize 128
+    container_name: mongo
+    image: mongo
+    volumes:
+    - ./mongo_data:/data/db
+    - ./mongo_dump:/dump
+  rocketchat:
+    container_name: rocketchat
+    environment:
+      ROOT_URL: http://localhost:3000
+    image: rocketchat/rocket.chat:0.14.0
+    ports:
+    - 3000:3000
+    restart: always

@@ -1,16 +1,17 @@
-postgres:
-  extends:
-    file: ../db/postgres.yml
-    service: postgres
-
-redmine:
-  container_name: redmine
-  image: redmine
-  volumes:
-    - redmine_files:/usr/src/redmine/files
-  restart: on-failure
-  environment:
-    POSTGRES_PORT_5432_TCP: 5432
-    POSTGRES_ENV_POSTGRES_PASSWORD: ${db_pass}
-  ports:
-    - "3000:3000"
+version: '2'
+services:
+  postgres:
+    extends:
+      file: ../db/postgres.yml
+      service: postgres
+  redmine:
+    container_name: redmine
+    environment:
+      POSTGRES_ENV_POSTGRES_PASSWORD: ${db_pass}
+      POSTGRES_PORT_5432_TCP: 5432
+    image: redmine
+    ports:
+    - 3000:3000
+    restart: on-failure
+    volumes:
+    - ./redmine_files:/usr/src/redmine/files

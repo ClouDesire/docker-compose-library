@@ -1,14 +1,21 @@
-vaultier:
-  container_name: vaultier
-  image: rclick/vaultier
-  volumes:
-    - postgres_data:/var/lib/postgresql
-    - vaultier_logs:/opt/vaultier/logs
-    - vaultier_data:/opt/vaultier/data
-  environment:
-    VAULTIER_DOMAIN: cloudesire.com
-  ports:
-    - "80:80"
-
-# With external postgres says:
-# ERROR:  relation "djkombu_queue" does not exist at character 58
+version: '2'
+services:
+  postgres:
+    environment:
+      POSTGRES_DB: vaultier
+    extends:
+      file: ../db/postgres.yml
+      service: postgres
+  vaultier:
+    container_name: vaultier
+    environment:
+      VAULTIER_DATABASE_HOST: postgres
+      VAULTIER_DATABASE_PASSWORD: ${db_pass}
+      VAULTIER_DATABASE_USER: postgres
+      VAULTIER_DOMAIN: cloudesire.com
+    image: rclick/vaultier
+    ports:
+    - 80:80
+    volumes:
+    - ./vaultier_logs:/opt/vaultier/logs
+    - ./vaultier_data:/opt/vaultier/data

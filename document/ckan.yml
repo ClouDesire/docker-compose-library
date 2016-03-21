@@ -1,23 +1,23 @@
-postgres:
-  extends:
-    file: ../db/postgres.yml
-    service: postgres
-  environment:
-    POSTGRES_DB: ckan
-    POSTGRES_USER: ckan
-    POSTGRES_PASSWORD: ckan
-
-solr:
-  image: ckan/solr
-  container_name: solr
-
-ckan:
-  container_name: ckan
-  image: cygri/ckan:2.2.1
-  volumes:
-    - DATA:/opt/solr/example/solr/ckan/data
-  environment:
-    DATABASE_URL: postgresql://ckan:ckan@postgres/ckan
-    SOLR_URL: http://solr:8983/solr/ckan
-  ports:
-    - "80:80"
+version: '2'
+services:
+  ckan:
+    container_name: ckan
+    environment:
+      DATABASE_URL: postgresql://ckan:ckan@postgres/ckan
+      SOLR_URL: http://solr:8983/solr/ckan
+    image: cygri/ckan:2.2.1
+    ports:
+    - 80:80
+    volumes:
+    - ./DATA:/opt/solr/example/solr/ckan/data
+  postgres:
+    environment:
+      POSTGRES_DB: ckan
+      POSTGRES_PASSWORD: ckan
+      POSTGRES_USER: ckan
+    extends:
+      file: ../db/postgres.yml
+      service: postgres
+  solr:
+    container_name: solr
+    image: ckan/solr

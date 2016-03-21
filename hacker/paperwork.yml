@@ -1,7 +1,9 @@
-paperwork:
-  container_name: paperwork
-  image: zuhkov/paperwork
-  volumes:
-    - paperwork_config:/config
-  ports:
-    - "80:80"
+version: '2'
+services:
+  paperwork:
+    container_name: paperwork
+    image: zuhkov/paperwork
+    ports:
+    - 80:80
+    volumes:
+    - ./paperwork_config:/config

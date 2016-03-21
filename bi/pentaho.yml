@@ -1,14 +1,15 @@
-postgres:
-  extends:
-    file: ../db/postgres.yml
-    service: postgres
-
-pentaho:
-  container_name: pentaho
-  image: wmarinho/pentaho-biserver:5.1-TRUNK
-  environment:
-    PGHOST: postgres
-    PGUSER: postgres
-    PGPASSWORD: ${db_pass}
-  ports:
-    - "8080:8080"
+version: '2'
+services:
+  pentaho:
+    container_name: pentaho
+    environment:
+      PGHOST: postgres
+      PGPASSWORD: ${db_pass}
+      PGUSER: postgres
+    image: wmarinho/pentaho-biserver:5.1-TRUNK
+    ports:
+    - 8080:8080
+  postgres:
+    extends:
+      file: ../db/postgres.yml
+      service: postgres

@@ -1,9 +1,9 @@
-dokuwiki:
-  container_name: dokuwiki
-  image: idef1x/dokuwiki
-  volumes:
-    - dokuwiki_storage:/data
-  ports:
+version: '2'
+services:
+  dokuwiki:
+    container_name: dokuwiki
+    image: idef1x/dokuwiki
+    ports:
     - 80:80
-
-# final step: http://localhost/install.php
+    volumes:
+    - ./dokuwiki_storage:/data

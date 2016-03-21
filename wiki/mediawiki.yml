@@ -1,16 +1,17 @@
-mysql:
-  extends:
-    file: ../db/mysql.yml
-    service: mysql
-
-mediawiki:
-  container_name: mediawiki
-  image: synctree/mediawiki
-  environment:
-    MYSQL_PORT_3306_TCP: 3306
-    MEDIAWIKI_DB_HOST: mysql
-    MEDIAWIKI_DB_PASSWORD: ${db_pass}
-    MEDIAWIKI_DB_USER: root
-    MEDIAWIKI_DB_NAME: mediawiki
-  ports:
+version: '2'
+services:
+  mediawiki:
+    container_name: mediawiki
+    environment:
+      MEDIAWIKI_DB_HOST: mysql
+      MEDIAWIKI_DB_NAME: mediawiki
+      MEDIAWIKI_DB_PASSWORD: ${db_pass}
+      MEDIAWIKI_DB_USER: root
+      MYSQL_PORT_3306_TCP: 3306
+    image: synctree/mediawiki
+    ports:
     - 80:80
+  mysql:
+    extends:
+      file: ../db/mysql.yml
+      service: mysql
