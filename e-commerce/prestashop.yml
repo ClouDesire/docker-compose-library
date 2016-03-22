@@ -1,0 +1,24 @@
+version: '2'
+services:
+  mysql:
+    environment:
+      MYSQL_DATABASE: prestashop
+    extends:
+      file: ../db/mysql.yml
+      service: mysql
+  prestashop:
+    container_name: prestashop
+    environment:
+      ADMIN_MAIL: ${admin_mail}
+      ADMIN_PASSWD: ${admin_passwd}
+      DB_PASSWD: ${db_pass}
+      DB_SERVER: mysql
+      PS_FOLDER_ADMIN: ${admin_folder}
+      PS_FOLDER_INSTALL: ${install_folder}
+      PS_INSTALL_AUTO: 1
+      PS_HANDLE_DYNAMIC_DOMAIN: 1
+    image: prestashop/prestashop
+    ports:
+    - 80:80
+
+# Admin folder is the administration area
