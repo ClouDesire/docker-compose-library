@@ -1,0 +1,29 @@
+version: '2'
+services:
+  postgres:
+    extends:
+      file: ../db/postgres.yml
+      service: postgres
+    environment:
+      POSTGRES_DB: bonitadb
+  bonita:
+    container_name: bonita
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: ${db_pass}
+      PLATFORM_PASSWORD: ${platform_pass}
+      PLATFORM_LOGIN: platform_user
+      TENANT_PASSWORD: ${tenant_pass}
+      TENANT_LOGIN: tenant_user
+      HTTP_API: true
+    image: library/bonita
+    ports:
+    - 8080:8080
+    volumes:
+    - ./bonita_data:/opt/bonita
+
+# PLATFORM_PASSWORD is never used, tenant can create administrators
+# host/bonita
+
