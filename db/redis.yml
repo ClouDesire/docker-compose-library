@@ -1,0 +1,9 @@
+version: '2'
+services:
+  redis:
+    container_name: redis
+    image: redis
+    volumes:
+    - ./redis_data:/data
+
+# I know it isn't a db...

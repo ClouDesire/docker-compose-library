@@ -31,7 +31,6 @@ services:
       file: ../db/postgres.yml
       service: postgres
   redis:
-    container_name: redis
-    image: redis
-    volumes:
-    - ./redis_data:/data
+    extends:
+      file: ../db/redis.yml
+      service: redis
