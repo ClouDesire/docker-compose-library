@@ -12,7 +12,6 @@ services:
     volumes:
     - ./letschat_config:/usr/src/app/config
   mongo:
-    container_name: mongo
-    image: mongo
-    volumes:
-    - ./mongo_data:/data/db
+    extends:
+      file: ../db/mongo.yml
+      service: mongo

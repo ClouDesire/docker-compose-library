@@ -14,11 +14,9 @@ services:
     - 3001:8080
   mongo:
     command: mongod --smallfiles --oplogSize 128
-    container_name: mongo
-    image: mongo
-    volumes:
-    - ./mongo_data:/data/db
-    - ./mongo_dump:/dump
+    extends:
+      file: ../db/mongo.yml
+      service: mongo
   rocketchat:
     container_name: rocketchat
     environment:
