@@ -1,0 +1,24 @@
+version: '2'
+services:
+  mysql:
+    environment:
+      MYSQL_DATABASE: suitecrm
+      MYSQL_USER: suitecrm
+      MYSQL_PASSWORD: ${usr_pass}
+    extends:
+      file: ../db/mysql.yml
+      service: mysql
+  suitecrm:
+    container_name: suitecrm
+    environment:
+      DB_TYPE: mysql
+      DB_MANAGER: MysqlManager
+      DB_HOST_NAME: mysql
+      DB_TCP_PORT: 3306
+      DB_USER_NAME: suitecrm
+      DB_PASSWORD: ${usr_pass}
+      DATABASE_NAME: suitecrm
+    image: spantree/suitecrm
+    ports:
+      - 80:80
+
