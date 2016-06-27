@@ -1,0 +1,11 @@
+version: '2'
+services:
+  logicaldoc: 
+    container_name: logicaldoc  
+    image: mcsaky/logicaldoc-mysql
+    ports:
+    - 8080:8080
+    volumes:
+    - ./SOME_DATA_FOLDER:/opt/logicaldoc/repository
+    - ./SOME_DB_DATA:/var/lib/mysql
+
