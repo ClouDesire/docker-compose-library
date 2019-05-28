@@ -17,5 +17,5 @@ services:
     environment:
       POSTGRES_DB: alfresco
     extends:
-      file: ../db/postgres.yml
+      file: ../database/postgres.yml
       service: postgres

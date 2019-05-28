@@ -2,7 +2,7 @@ version: '2'
 services:
   mysql:
     extends:
-      file: ../db/mysql.yml
+      file: ../database/mysql.yml
       service: mysql
   wordpress:
     container_name: wordpress

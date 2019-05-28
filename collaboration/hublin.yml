@@ -3,11 +3,11 @@ services:
   mongo:
     container_name: db
     extends:
-      file: ../db/mongo.yml
+      file: ../database/mongo.yml
       service: mongo
   redis:
     extends:
-      file: ../db/redis.yml
+      file: ../database/redis.yml
       service: redis
   hublin:
     container_name: hublin

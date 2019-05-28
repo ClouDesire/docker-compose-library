@@ -22,9 +22,9 @@ services:
     environment:
       POSTGRES_DB: gitlabhq_production
     extends:
-      file: ../db/postgres.yml
+      file: ../database/postgres.yml
       service: postgres
   redis:
     extends:
-      file: ../db/redis.yml
+      file: ../database/redis.yml
       service: redis

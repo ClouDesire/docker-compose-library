@@ -2,7 +2,7 @@ version: '2'
 services:
   postgres:
     extends:
-      file: ../db/postgres.yml
+      file: ../database/postgres.yml
       service: postgres
     environment:
       POSTGRES_DB: bonitadb
@@ -17,7 +17,7 @@ services:
       PLATFORM_LOGIN: platform_user
       TENANT_PASSWORD: ${tenant_pass}
       TENANT_LOGIN: tenant_user
-      HTTP_API: true
+      HTTP_API: "true"
     image: library/bonita
     ports:
     - 8080:8080

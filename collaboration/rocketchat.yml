@@ -15,7 +15,7 @@ services:
   mongo:
     command: mongod --smallfiles --oplogSize 128
     extends:
-      file: ../db/mongo.yml
+      file: ../database/mongo.yml
       service: mongo
   rocketchat:
     container_name: rocketchat

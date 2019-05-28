@@ -17,5 +17,5 @@ services:
     environment:
       POSTGRES_USER: odoo
     extends:
-      file: ../db/postgres.yml
+      file: ../database/postgres.yml
       service: postgres

@@ -1,7 +1,0 @@
-version: '2'
-services:
-  torbox:
-    container_name: torbox
-    image: hsaito/torbox
-    ports:
-    - 9050:9050

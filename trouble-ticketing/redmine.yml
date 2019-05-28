@@ -2,7 +2,7 @@ version: '2'
 services:
   postgres:
     extends:
-      file: ../db/postgres.yml
+      file: ../database/postgres.yml
       service: postgres
   redmine:
     container_name: redmine

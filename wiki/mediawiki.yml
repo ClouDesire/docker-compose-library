@@ -13,5 +13,5 @@ services:
     - 80:80
   mysql:
     extends:
-      file: ../db/mysql.yml
+      file: ../database/mysql.yml
       service: mysql

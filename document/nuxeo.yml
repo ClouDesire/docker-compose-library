@@ -28,9 +28,9 @@ services:
       POSTGRES_PASSWORD: ${db_pass}
       POSTGRES_USER: nuxeo
     extends:
-      file: ../db/postgres.yml
+      file: ../database/postgres.yml
       service: postgres
   redis:
     extends:
-      file: ../db/redis.yml
+      file: ../database/redis.yml
       service: redis

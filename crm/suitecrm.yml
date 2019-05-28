@@ -6,7 +6,7 @@ services:
       MYSQL_USER: suitecrm
       MYSQL_PASSWORD: ${usr_pass}
     extends:
-      file: ../db/mysql.yml
+      file: ../database/mysql.yml
       service: mysql
   suitecrm:
     container_name: suitecrm

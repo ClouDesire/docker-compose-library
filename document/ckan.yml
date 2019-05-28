@@ -16,7 +16,7 @@ services:
       POSTGRES_PASSWORD: ckan
       POSTGRES_USER: ckan
     extends:
-      file: ../db/postgres.yml
+      file: ../database/postgres.yml
       service: postgres
   solr:
     container_name: solr
