@@ -1,0 +1,66 @@
+version: '3.7'
+
+services:
+  wordpress:
+    image: wordpress
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_PASSWORD: ${DB_PASS}
+      WORDPRESS_DB_USER: root
+    ports:
+      - 80:80
+    volumes:
+      - ${DATA_BASE_DIR}/wordpress_html:/var/www/html
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+    volumes:
+      - ${DATA_BASE_DIR}/mysql_data:/var/lib/mysql
+
+x-application:
+  name: Wordpress
+  headline:
+    en: The world-leader open-source CMS
+    it: Il CMS open-source leader nel mondo
+  category: CMS
+  tags:
+    - open-source
+    - blogging
+    - php
+  logo: https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/WordPress_logo.svg/500px-WordPress_logo.svg.png
+  description:
+    en: |
+      Do you need to create a website, blog, or app? Try WordPress, one of the
+      most popular content management systems in the world!
+    it: |
+      Devi creare un sito web, un blog o un'app? Prova WordPress, il software di
+      content management più usato al mondo!
+  long_description:
+    en: |
+      WordPress is a free and open-source content management system (CMS) based on
+      PHP & MySQL. Features include a plugin architecture and a template system.
+      It is most associated with blogging but supports other types of web content
+      including more traditional mailing lists and forums, media galleries, and
+      online stores.
+    it: | 
+      WordPress è una piattaforma software di "blog" e content management
+      system (CMS) open source ovvero un programma che, girando lato server,
+      consente la creazione e distribuzione di un sito Internet formato da
+      contenuti testuali o multimediali, facilmente gestibili ed aggiornabili in
+      maniera dinamica.
+  features:
+    en:
+      - SEO friendly
+      - Thusands of themes and plugins available
+      - Easy to use and update
+      - Highly customizable
+      - Supported by a thriving, engaged community
+      - Quick installation
+    it:
+      - SEO friendly
+      - Migliaia di temi e plugin
+      - Intuitivo e semplice da usare
+      - Estremamente flessibile e personalizzabile
+      - Community online molto attiva
+      - Semplice da integrare con altri strumenti

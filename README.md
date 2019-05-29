@@ -3,10 +3,20 @@
 A collection of ready-to-use and hopefully updated open-source applications with
 the help of Docker-Compose.
 
-Run with:
+## Setup
+
+Copy [.env.template](.env.template) as `.env` and customize the variables.
+
+Run an application with:
 
 ```
-ENV_KEY="value" docker-compose -f <category>/<app-name>.yml up
+docker-compose -f apps/<category>/<app-name>.yml up
+```
+
+or
+
+```
+docker stack deploy -c apps/<category>/<app-name>.yml <id>
 ```
 
 ## Applications list
@@ -53,9 +63,9 @@ ENV_KEY="value" docker-compose -f <category>/<app-name>.yml up
 
 ### unify_yamls.py
 
-undocumented
+undocumented and probably going to be deprecated
 
 ### v1_to_v2.py
 
-bulk update from v1 to v2 composer:
+deprecated: bulk update from v1 to v2 composer:
 `find . -name "*.yml" -exec python v1_to_v2.py --source {} --destination {} \;`

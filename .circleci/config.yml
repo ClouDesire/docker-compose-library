@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - run: cp .env.template .env
+      - run:
+          name: autoenv on circleci
+          command: cat .env | xargs -n1 echo export >> $BASH_ENV
+      - run: ./.circleci/compose-up.sh apps/cms/wordpress.yml
+      - run: sleep 20 && ! docker ps --format '{{.Status}}' | grep -v 'Up'
+      - run: ./.circleci/compose-down.sh apps/cms/wordpress.yml
+      - run: docker swarm init
+      - run: ./.circleci/stack-up.sh apps/cms/wordpress.yml
+      - run: sleep 20 && ! docker stack ps --format "{{.CurrentState}}" wordpress | grep -v 'Running'
